@@ -1,0 +1,14 @@
+*
+
+!scripts
+!scripts/*.applescript
+!transforms
+!transforms/*.js
+!.gitignore
+!AGENTS.md
+!justfile
+!LICENSE
+!midi-transform.js
+!midi-transform.maxpat
+!midi-transform.png
+!README.md

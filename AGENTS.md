@@ -1,0 +1,4 @@
+- The `maxpat` filetype can be treated as JSON
+- After any task involving arranging or cleaning up the patch layout, run `just screenshot` to capture the result and review the image
+- If the Max console is visible in the screenshot and obscures the patch, retake with `just screenshot midi-transform auto toggle` to dismiss it first
+- In Max v8 JS, use `./` prefix for relative `require()` paths (e.g. `require("./transforms/identity.js")`). Bare paths like `"transforms/identity.js"` will fail. `__dirname` is not available.
