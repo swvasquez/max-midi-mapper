@@ -1,0 +1,25 @@
+{
+  "name": "max-midi-mapper",
+  "version": "1.0.0",
+  "description": "A Max 9 patch for transforming MIDI notes in real time using swappable JavaScript transform functions.",
+  "main": "midi-transform.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swvasquez/max-midi-mapper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/swvasquez/max-midi-mapper/issues"
+  },
+  "homepage": "https://github.com/swvasquez/max-midi-mapper#readme",
+  "devDependencies": {
+    "eslint": "^10.1.0",
+    "jest": "^30.3.0"
+  }
+}

@@ -63,6 +63,34 @@ This project uses [Zed](https://zed.dev) as the editor alongside an AppleScript-
 just screenshot midi-transform
 ```
 
+## Linting
+
+Transform and patch JS is linted with [ESLint](https://eslint.org) in ES5 mode to catch syntax incompatible with Max's SpiderMonkey engine.
+
+```sh
+# Lint everything
+just lint
+
+# Lint a specific file
+just lint transforms/cc-quantize.js
+```
+
+## Testing
+
+Transform functions are tested with [Jest](https://jestjs.io). Test files live in `tests/`. Install dependencies before running:
+
+```sh
+npm install
+```
+
+```sh
+# Run all tests
+just test
+
+# Run tests for a specific transform
+just test cc-quantize
+```
+
 ## Notes
 
 - **JavaScript compatibility**: Max v8 uses a non-standard JS engine — transform scripts must use ES5-style code (`var`, `function`, no arrow functions, no template literals, no destructuring, etc.).

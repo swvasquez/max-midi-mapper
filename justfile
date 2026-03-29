@@ -15,3 +15,9 @@
 
 screenshot patch="midi-transform" zoom="auto" console="":
     osascript scripts/screenshot-max.applescript {{patch}} {{zoom}} {{console}}
+
+test transform="":
+    npm test {{ if transform != "" { "-- --testPathPattern=" + transform } else { "" } }}
+
+lint file="":
+    npx eslint {{ if file != "" { file } else { "midi-transform.js transforms/ tests/" } }}
