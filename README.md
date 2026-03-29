@@ -18,9 +18,11 @@ MIDI input via `notein` → JavaScript transform → `noteout`. The active trans
 
 | Parameter | Description |
 |-----------|-------------|
+| **debug** | Log each note transform to the Max console |
 | **in ch** | MIDI input channel (0 = all) |
-| **transform** | Active transform (selected from `transforms/`) |
 | **out ch** | MIDI output channel |
+| **transform** | Active transform (selected from `transforms/`) |
+| **params** | Key-value pairs passed as options to the active transform (e.g. `root Bb scale minor p 0.5`) |
 
 ## Transforms
 
@@ -35,7 +37,12 @@ module.exports = function run(pitch, velocity, options) {
 | File | Description |
 |------|-------------|
 | `identity.js` | Pass MIDI through unchanged |
-| `octave-rand.js` | Randomly shift pitch by ±N octaves (`option neighborhood <n>`) |
+| `octave-rand.js` | Randomly shift pitch by ±N octaves. Option: `range <n>` |
+| `scale-rand.js` | Randomly replace notes with pitches from a named scale. Options: `root <note>`, `scale <name>`, `range <n>`, `p <0-1>` |
+
+Scale names and aliases are defined in `transforms/scales.js`.
+
+> **Note:** "scale" in this repo refers to a rootless interval pattern (e.g. `major` = `[2,2,1,2,2,2,1]`). The root is supplied separately via the `root` option and combined at runtime to produce actual pitches.
 
 To add a new transform, create `transforms/my-transform.js` and add it to the umenu in the patch.
 

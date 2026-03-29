@@ -9,8 +9,21 @@
             "modernui": 1
         },
         "classnamespace": "box",
-        "rect": [ 471.0, 111.0, 722.0, 555.0 ],
+        "rect": [ 34.0, 96.0, 952.0, 778.0 ],
         "boxes": [
+            {
+                "box": {
+                    "fontname": "Courier New",
+                    "fontsize": 11.0,
+                    "id": "obj-100",
+                    "linecount": 58,
+                    "maxclass": "comment",
+                    "numinlets": 1,
+                    "numoutlets": 0,
+                    "patching_rect": [ 720.0, 5.0, 200.0, 729.0 ],
+                    "text": "— SCALES —\nchromatic\n\nmajor-ionian\ndorian\nphrygian\nlydian\nmixolydian\nnatural-minor-aeolian\nlocrian\n\nharmonic-minor\nharmonic-major\n\nmelodic-minor\ndorian-flat-2\nlydian-augmented\nlydian-dominant\nmixolydian-flat-6\nlocrian-sharp-2\naltered-super-locrian\n\nphrygian-dominant\ndouble-harmonic-major\nhungarian-minor\nhungarian-major\nneapolitan-minor\nneapolitan-major\npersian\nukrainian-dorian\nenigmatic\n\nmajor-pentatonic\nminor-pentatonic\nblues\nhirajoshi\nin-japanese\nyo\n\nwhole-tone\naugmented\nprometheus\ndiminished-whole-half\ndiminished-half-whole\n\nbebop-major\nbebop-dominant\nbebop-dorian\n\n— aliases —\nmajor → major-ionian\nminor → natural-minor-aeolian\nionian → major-ionian\naeolian → natural-minor-aeolian\nharmonic → harmonic-minor\nmelodic → melodic-minor\npentatonic → major-pentatonic"
+                }
+            },
             {
                 "box": {
                     "id": "obj-11",
@@ -83,7 +96,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 20.0, 101.0, 40.0, 20.0 ],
+                    "patching_rect": [ 94.0, 101.0, 40.0, 20.0 ],
                     "text": "in ch"
                 }
             },
@@ -97,7 +110,7 @@
                     "numoutlets": 2,
                     "outlettype": [ "", "bang" ],
                     "parameter_enable": 0,
-                    "patching_rect": [ 20.0, 121.0, 50.0, 22.0 ]
+                    "patching_rect": [ 94.0, 121.0, 50.0, 22.0 ]
                 }
             },
             {
@@ -106,7 +119,7 @@
                     "maxclass": "newobj",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 20.0, 163.0, 55.0, 22.0 ],
+                    "patching_rect": [ 94.0, 163.0, 55.0, 22.0 ],
                     "text": "s in_ch"
                 }
             },
@@ -116,20 +129,20 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 110.0, 101.0, 60.0, 20.0 ],
+                    "patching_rect": [ 267.0, 101.0, 60.0, 20.0 ],
                     "text": "transform"
                 }
             },
             {
                 "box": {
                     "id": "obj-34",
-                    "items": [ "identity", ",", "octave-rand" ],
+                    "items": [ "identity", ",", "octave-rand", ",", "scale-rand" ],
                     "maxclass": "umenu",
                     "numinlets": 1,
                     "numoutlets": 3,
                     "outlettype": [ "int", "", "" ],
                     "parameter_enable": 0,
-                    "patching_rect": [ 110.0, 121.0, 120.0, 22.0 ]
+                    "patching_rect": [ 267.0, 121.0, 120.0, 22.0 ]
                 }
             },
             {
@@ -138,7 +151,7 @@
                     "maxclass": "newobj",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 110.0, 163.0, 40.0, 22.0 ],
+                    "patching_rect": [ 267.0, 163.0, 40.0, 22.0 ],
                     "text": "s xfm"
                 }
             },
@@ -148,7 +161,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 264.0, 101.0, 45.0, 20.0 ],
+                    "patching_rect": [ 177.0, 101.0, 45.0, 20.0 ],
                     "text": "out ch"
                 }
             },
@@ -162,7 +175,7 @@
                     "numoutlets": 2,
                     "outlettype": [ "", "bang" ],
                     "parameter_enable": 0,
-                    "patching_rect": [ 264.0, 121.0, 50.0, 22.0 ]
+                    "patching_rect": [ 177.0, 121.0, 50.0, 22.0 ]
                 }
             },
             {
@@ -171,7 +184,7 @@
                     "maxclass": "newobj",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 264.0, 163.0, 60.0, 22.0 ],
+                    "patching_rect": [ 177.0, 163.0, 60.0, 22.0 ],
                     "text": "s out_ch"
                 }
             },
@@ -181,7 +194,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 370.0, 101.0, 49.0, 20.0 ],
+                    "patching_rect": [ 414.0, 101.0, 49.0, 20.0 ],
                     "text": "params"
                 }
             },
@@ -193,7 +206,7 @@
                     "numoutlets": 4,
                     "outlettype": [ "", "int", "", "" ],
                     "parameter_enable": 0,
-                    "patching_rect": [ 370.0, 121.0, 150.0, 22.0 ]
+                    "patching_rect": [ 414.0, 121.0, 254.0, 22.0 ]
                 }
             },
             {
@@ -213,7 +226,7 @@
                     "maxclass": "newobj",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 370.0, 163.0, 70.0, 22.0 ],
+                    "patching_rect": [ 414.0, 163.0, 70.0, 22.0 ],
                     "text": "s setopts"
                 }
             },
@@ -223,7 +236,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 540.0, 101.0, 42.0, 20.0 ],
+                    "patching_rect": [ 20.0, 101.0, 42.0, 20.0 ],
                     "text": "debug"
                 }
             },
@@ -235,7 +248,7 @@
                     "numoutlets": 1,
                     "outlettype": [ "int" ],
                     "parameter_enable": 0,
-                    "patching_rect": [ 540.0, 121.0, 22.0, 22.0 ]
+                    "patching_rect": [ 20.0, 121.0, 22.0, 22.0 ]
                 }
             },
             {
@@ -244,7 +257,7 @@
                     "maxclass": "newobj",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 540.0, 163.0, 45.0, 22.0 ],
+                    "patching_rect": [ 20.0, 163.0, 45.0, 22.0 ],
                     "text": "s dbg"
                 }
             },
