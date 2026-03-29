@@ -1,11 +1,16 @@
 // midi-transform.js — Max v8 MIDI transform loader
 //
-// INLET 0 accepts three message types:
+// INLET 0 accepts four message types:
 //
 //   list <pitch> <velocity> <channel>
 //     Received from notein via [pack 0 0 0]. Runs the active transform on
 //     note-on events and routes note-off to the correct (transformed) pitch.
 //     Filtered by in_ch option: channel 0 = pass all, 1–16 = specific channel.
+//
+//   cc <controller> <value> <channel>
+//     Received from ctlin via [pack 0 0 0] + [prepend cc]. Updates ccState and
+//     runs transformFn.runCC if defined; otherwise passes through unchanged.
+//     Filtered by in_ch the same way as notes.
 //
 //   transform <name>
 //     Load a new transform from transforms/<name>.js. Resets options and
@@ -19,14 +24,18 @@
 // OUTLET 0 emits: <pitch> <velocity>
 //   note-on:  transformed pitch and velocity
 //   note-off: same pitch that was used for the corresponding note-on
+//
+// OUTLET 1 emits: <controller> <value>
+//   CC output from transformFn.runCC, or pass-through if not defined
 
 inlets = 1;
-outlets = 1;
+outlets = 2;
 
 var transformFn = null;
 var transformDefaults = {};
 var options = {};
-var noteMap = {};  // maps input pitch -> output pitch for active notes
+var noteMap = {};   // maps input pitch -> output pitch for active notes
+var ccState = {};   // maps controller number -> most recent value
 
 function postOptions() {
     var keys = [];
@@ -34,6 +43,10 @@ function postOptions() {
         var val = (options[k] !== undefined) ? options[k] : transformDefaults[k];
         var suffix = (options[k] !== undefined) ? "" : " (default)";
         keys.push(k + "=" + val + suffix);
+    }
+    for (var k in options) {
+        if (k === "in_ch" || k === "debug") continue;
+        if (transformDefaults[k] === undefined) keys.push(k + "=" + options[k]);
     }
     post("options: " + (keys.length ? keys.join(", ") : "(none)") + "\n");
 }
@@ -94,11 +107,31 @@ function list(pitch, velocity, channel) {
         outV = 0;
         delete noteMap[pitch];
     } else {
-        var out = transformFn(pitch, velocity, options);
+        var out = transformFn(pitch, velocity, options, ccState);
         noteMap[pitch] = out[0];
         outP = out[0];
         outV = out[1];
     }
     if (options.debug) post(fmtNote(pitch, velocity) + " -> " + fmtNote(outP, outV) + "\n");
     outlet(0, outP, outV);
+}
+
+function cc(controller, value, channel) {
+    if (!transformFn) return;
+    var in_ch = options.in_ch || 0;
+    if (in_ch !== 0 && channel !== in_ch) return;
+
+    ccState[controller] = value;
+
+    var outC, outV;
+    if (transformFn.runCC) {
+        var out = transformFn.runCC(controller, value, options, ccState);
+        outC = out[0];
+        outV = out[1];
+    } else {
+        outC = controller;
+        outV = value;
+    }
+    if (options.debug && (outC !== controller || outV !== value)) post("cc[" + controller + "," + value + "] -> cc[" + outC + "," + outV + "]\n");
+    outlet(1, outC, outV);
 }

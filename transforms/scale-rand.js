@@ -49,7 +49,7 @@ function buildScalePitches(intervals, root) {
     return pitches;
 }
 
-module.exports = function run(pitch, velocity, options) {
+module.exports = function run(pitch, velocity, options, cc) {
     var scaleName = (options && options.scale) ? options.scale : "major";
     var rootStr = (options && options.root) ? options.root : "C";
     var range = (options && options.range !== undefined) ? options.range : 1;
@@ -76,6 +76,10 @@ module.exports = function run(pitch, velocity, options) {
     if (pitches.length === 0) return [pitch, velocity];
     var newPitch = pitches[Math.floor(Math.random() * pitches.length)];
     return [newPitch, velocity];
+};
+
+module.exports.runCC = function(controller, value, options, cc) {
+    return [controller, value];
 };
 
 module.exports.defaults = { root: "C", scale: "major", range: 1, p: 0.5 };

@@ -12,7 +12,7 @@ The below visualization of the patch shows custom MIDI logic for electronic inst
 
 ## How it works
 
-MIDI input via `notein` → JavaScript transform → `noteout`. The active transform is a small JS module that receives `(pitch, velocity, options)` and returns `[pitch, velocity]`. Transforms are hot-swappable from the patch UI without interrupting the signal chain.
+Notes and CCs flow through the patch in parallel. Notes: `notein` → JS transform → `noteout`. CCs: `ctlin` → JS transform → `ctlout`. The active transform is a JS module that receives `(pitch, velocity, options, cc)` and returns `[pitch, velocity]`. CCs are stored in the `cc` object (keyed by controller number) and passed as context to every note event. Transforms are hot-swappable from the patch UI without interrupting the signal chain.
 
 ## Configuration
 
@@ -26,11 +26,18 @@ MIDI input via `notein` → JavaScript transform → `noteout`. The active trans
 
 ## Transforms
 
-Transform files live in `transforms/`. Each exports a single function:
+Transform files live in `transforms/`. Each exports a note handler, and optionally a CC handler:
 
 ```js
-module.exports = function run(pitch, velocity, options) {
+// Required: handle note events
+// cc is a live snapshot of all received CC values: { controller: value, ... }
+module.exports = function run(pitch, velocity, options, cc) {
     return [pitch, velocity];
+};
+
+// Optional: handle CC events. Defaults to pass-through if not defined.
+module.exports.runCC = function(controller, value, options, cc) {
+    return [controller, value];
 };
 ```
 
@@ -39,6 +46,7 @@ module.exports = function run(pitch, velocity, options) {
 | `identity.js` | Pass MIDI through unchanged |
 | `octave-rand.js` | Randomly shift pitch by ±N octaves. Option: `range <n>` |
 | `scale-rand.js` | Randomly replace notes with pitches from a named scale. Options: `root <note>`, `scale <name>`, `range <n>`, `p <0-1>` |
+| `cc-quantize.js` | Quantize CC values to a discrete set. Divides 0–127 into equal buckets, one per value. Option: `values <pipe-separated>` (e.g. `values 0|32|64|96|127`) |
 
 Scale names and aliases are defined in `transforms/scales.js`.
 
