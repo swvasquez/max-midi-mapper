@@ -45,6 +45,33 @@ describe('scale-rand', function() {
             expect(result[0] % 12).toBe(resultFull[0] % 12);
             Math.random.mockRestore();
         });
+
+        it('max_step limits distance from previous output pitch', function() {
+            var history = [{ pitch: 60, velocity: 100, outPitch: 60, outVelocity: 100 }];
+            var results = [];
+            for (var i = 0; i < 50; i++) {
+                var r = run(60, 100, { p: 1, root: 'C', scale: 'major', range: 2, max_step: 3 }, {}, history, []);
+                results.push(r[0]);
+            }
+            results.forEach(function(p) {
+                expect(Math.abs(p - 60)).toBeLessThanOrEqual(3);
+            });
+        });
+
+        it('passes through when no candidates satisfy max_step', function() {
+            // prev pitch 60, max_step 0 — only candidate within 0 semitones is 60 itself,
+            // which is excluded since it equals the input pitch
+            var history = [{ pitch: 60, velocity: 100, outPitch: 60, outVelocity: 100 }];
+            var result = run(60, 100, { p: 1, root: 'C', scale: 'major', max_step: 0 }, {}, history, []);
+            expect(result).toEqual([60, 100]);
+        });
+
+        it('ignores max_step when noteHistory is empty', function() {
+            jest.spyOn(Math, 'random').mockReturnValue(0);
+            var result = run(60, 100, { p: 1, root: 'C', scale: 'major', max_step: 1 }, {}, [], []);
+            expect(result[0]).not.toBe(60);
+            Math.random.mockRestore();
+        });
     });
 
     describe('runCC', function() {

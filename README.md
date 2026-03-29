@@ -49,7 +49,7 @@ module.exports.runCC = function(controller, value, options, cc, noteHistory, ccH
 |------|-------------|
 | `identity.js` | Pass MIDI through unchanged |
 | `octave-rand.js` | Randomly shift pitch by ±N octaves. Option: `range <n>` |
-| `scale-rand.js` | Randomly replace notes with pitches from a named scale. Options: `root <note>`, `scale <name>`, `range <n>`, `p <0-1>` |
+| `scale-rand.js` | Randomly replace notes with pitches from a named scale. Options: `root <note>`, `scale <name>`, `range <n>`, `p <0-1>`, `max_step <n>` (max semitone distance from previous output pitch) |
 | `cc-quantize.js` | Quantize CC values to a discrete set. Divides 0–127 into equal buckets, one per value. Option: `values <pipe-separated>` (e.g. `values 0|32|64|96|127`) |
 
 Scale names and aliases are defined in `transforms/scales.js`.

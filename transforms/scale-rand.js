@@ -8,7 +8,10 @@
 //   scale        string  scale name from the SCALES dict below  (default: "major")
 //   root         string  root note, case-insensitive, e.g. C  Bb  F#  Ab  (default: "C")
 //   range        int>=0  notes drawn from (n-(r+1)*12, n+(r+1)*12) exclusive (default: 1)
-//   p            0–1     probability that the note is replaced at all  (default: 0)
+//   p            0–1     probability that the note is replaced at all  (default: 0.5)
+//   max_step     int>=0  max semitone distance from previous output pitch; disabled if unset.
+//                        note: max_step=0 does not freeze output — candidates must equal prevPitch,
+//                        so output can still vary when the input pitch changes.
 //
 // pitch    0–127  MIDI note number
 // velocity 0–127  note velocity, passed through unchanged
@@ -54,6 +57,7 @@ module.exports = function run(pitch, velocity, options, cc, noteHistory, ccHisto
     var rootStr = (options && options.root) ? options.root : "C";
     var range = (options && options.range !== undefined) ? options.range : 1;
     var p = (options && options.p !== undefined) ? options.p : 0.5;
+    var maxStep = (options && options.max_step !== undefined) ? options.max_step : null;
     if (Math.random() >= p) return [pitch, velocity];
     var cacheKey = rootStr + ":" + scaleName;
     if (!_cache[cacheKey]) {
@@ -68,10 +72,13 @@ module.exports = function run(pitch, velocity, options, cc, noteHistory, ccHisto
     var allPitches = _cache[cacheKey];
     var lo = pitch - (range + 1) * 12;
     var hi = pitch + (range + 1) * 12;
+    var prevPitch = (noteHistory && noteHistory.length) ? noteHistory[noteHistory.length - 1].outPitch : null;
     var pitches = [];
     for (var i = 0; i < allPitches.length; i++) {
         var candidate = allPitches[i];
-        if (candidate > lo && candidate < hi && candidate !== pitch) pitches.push(candidate);
+        if (candidate <= lo || candidate >= hi || candidate === pitch) continue;
+        if (maxStep !== null && prevPitch !== null && Math.abs(candidate - prevPitch) > maxStep) continue;
+        pitches.push(candidate);
     }
     if (pitches.length === 0) return [pitch, velocity];
     var newPitch = pitches[Math.floor(Math.random() * pitches.length)];
