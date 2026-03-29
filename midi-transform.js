@@ -34,8 +34,12 @@ outlets = 2;
 var transformFn = null;
 var transformDefaults = {};
 var options = {};
-var noteMap = {};   // maps input pitch -> output pitch for active notes
-var ccState = {};   // maps controller number -> most recent value
+var noteMap = {};     // maps input pitch -> output pitch for active notes
+var ccState = {};     // maps controller number -> most recent value
+var noteHistory = []; // ring buffer of recent note-on events: { pitch, velocity, outPitch, outVelocity }
+var ccHistory = [];   // ring buffer of recent CC events: { controller, value, outController, outValue }
+var noteBufferSize = 8;
+var ccBufferSize = 8;
 
 function postOptions() {
     var keys = [];
@@ -65,6 +69,8 @@ function loadTransform(name) {
         transformDefaults = transformFn.defaults || {};
         options = { in_ch: options.in_ch, debug: options.debug };
         noteMap = {};
+        noteHistory = [];
+        ccHistory = [];
         post("midi-transform: loaded '" + name + "'\n");
     } catch (e) {
         post("midi-transform: failed to load '" + name + "': " + e + "\n");
@@ -76,6 +82,16 @@ function transform(name) {
 }
 
 function option(key, value) {
+    if (key === "note_buffer_size") {
+        noteBufferSize = Math.max(1, Math.floor(value));
+        while (noteHistory.length > noteBufferSize) noteHistory.shift();
+        return;
+    }
+    if (key === "cc_buffer_size") {
+        ccBufferSize = Math.max(1, Math.floor(value));
+        while (ccHistory.length > ccBufferSize) ccHistory.shift();
+        return;
+    }
     options[key] = value;
     if (options.debug && key !== "debug") postOptions();
 }
@@ -107,10 +123,12 @@ function list(pitch, velocity, channel) {
         outV = 0;
         delete noteMap[pitch];
     } else {
-        var out = transformFn(pitch, velocity, options, ccState);
+        var out = transformFn(pitch, velocity, options, ccState, noteHistory, ccHistory);
         noteMap[pitch] = out[0];
         outP = out[0];
         outV = out[1];
+        noteHistory.push({ pitch: pitch, velocity: velocity, outPitch: outP, outVelocity: outV });
+        if (noteHistory.length > noteBufferSize) noteHistory.shift();
     }
     if (options.debug) post(fmtNote(pitch, velocity) + " -> " + fmtNote(outP, outV) + "\n");
     outlet(0, outP, outV);
@@ -125,13 +143,15 @@ function cc(controller, value, channel) {
 
     var outC, outV;
     if (transformFn.runCC) {
-        var out = transformFn.runCC(controller, value, options, ccState);
+        var out = transformFn.runCC(controller, value, options, ccState, noteHistory, ccHistory);
         outC = out[0];
         outV = out[1];
     } else {
         outC = controller;
         outV = value;
     }
+    ccHistory.push({ controller: controller, value: value, outController: outC, outValue: outV });
+    if (ccHistory.length > ccBufferSize) ccHistory.shift();
     if (options.debug && (outC !== controller || outV !== value)) post("cc[" + controller + "," + value + "] -> cc[" + outC + "," + outV + "]\n");
     outlet(1, outC, outV);
 }

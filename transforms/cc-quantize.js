@@ -19,11 +19,11 @@
 //
 // Note events are passed through unchanged.
 
-module.exports = function run(pitch, velocity, options, cc) {
+module.exports = function run(pitch, velocity, options, cc, noteHistory, ccHistory) {
     return [pitch, velocity];
 };
 
-module.exports.runCC = function(controller, value, options, cc) {
+module.exports.runCC = function(controller, value, options, cc, noteHistory, ccHistory) {
     if (options && options.cn !== undefined && parseInt(options.cn, 10) !== controller) return [controller, value];
     var raw = (options && options.values) ? String(options.values) : "0|64|127";
     var parts = raw.split("|");

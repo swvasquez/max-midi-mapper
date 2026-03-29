@@ -11,7 +11,7 @@
 //
 // pitch    0–127  MIDI note number
 // velocity 0–127  note velocity, passed through unchanged
-module.exports = function run(pitch, velocity, options, cc) {
+module.exports = function run(pitch, velocity, options, cc, noteHistory, ccHistory) {
     var range = (options && options.range !== undefined) ? options.range : 1;
     var p = (options && options.p !== undefined) ? options.p : 0.5;
     if (Math.random() >= p) return [pitch, velocity];
@@ -25,7 +25,7 @@ module.exports = function run(pitch, velocity, options, cc) {
     return [newPitch, velocity];
 };
 
-module.exports.runCC = function(controller, value, options, cc) {
+module.exports.runCC = function(controller, value, options, cc, noteHistory, ccHistory) {
     return [controller, value];
 };
 
