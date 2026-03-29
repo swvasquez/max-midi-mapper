@@ -5,16 +5,17 @@
 #   zoom     Zoom steps from 100%: positive = zoom in, negative = zoom out.
 #            Default "auto": automatically computes the minimum zoom-out needed
 #            to fit all patch content. Override with an integer to force a level.
-#   console  Pass "toggle" to send cmd+m before capturing (dismisses the console).
+#   flags    Optional flags: "toggle" dismisses the console, "noresize" skips window resizing.
 #
 # Examples:
-#   just screenshot                             # auto zoom, default patch
-#   just screenshot midi-transform              # auto zoom, named patch
-#   just screenshot midi-transform -2           # force 2 zoom-out steps
-#   just screenshot midi-transform auto toggle  # dismiss console first
+#   just screenshot                                       # auto zoom, default patch
+#   just screenshot midi-transform                        # auto zoom, named patch
+#   just screenshot midi-transform -2                     # force 2 zoom-out steps
+#   just screenshot midi-transform auto toggle            # dismiss console first
+#   just screenshot midi-transform auto noresize          # skip window resize
 
-screenshot patch="midi-transform" zoom="auto" console="":
-    osascript scripts/screenshot-max.applescript {{patch}} {{zoom}} {{console}}
+screenshot patch="midi-transform" zoom="auto" flags="":
+    osascript scripts/screenshot-max.applescript {{patch}} {{zoom}} {{flags}}
 
 test transform="":
     npm test {{ if transform != "" { "-- --testPathPattern=" + transform } else { "" } }}

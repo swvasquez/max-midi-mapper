@@ -7,6 +7,7 @@
 --               negative = zoom out (cmd+-). Default "auto": computes the minimum zoom-out
 --               steps needed to fit all patch content within the window.
 --   console     Optional. Pass "toggle" to send cmd+m before capturing (dismisses console).
+--   noresize    Optional. Pass "noresize" to skip window resizing entirely.
 --
 -- Behavior:
 --   - Opens the patch in Max if not already open, or brings it to front if it is.
@@ -31,7 +32,11 @@ on run argv
     set manualZoom to "auto"
     if (count of argv) >= 2 then set manualZoom to item 2 of argv
     set toggleConsole to false
-    if (count of argv) >= 3 and item 3 of argv is "toggle" then set toggleConsole to true
+    set skipResize to false
+    repeat with i from 3 to count of argv
+        if item i of argv is "toggle" then set toggleConsole to true
+        if item i of argv is "noresize" then set skipResize to true
+    end repeat
 
     set currentDir to do shell script "pwd"
     set patchPath to currentDir & "/" & patchName & ".maxpat"
@@ -107,21 +112,23 @@ print(win_w, win_h, steps)
     set zoomSteps to autoZoom
     if manualZoom is not "auto" then set zoomSteps to manualZoom as integer
 
-    -- Resize the window to the computed dimensions
-    tell application "System Events"
-        tell process "Max"
-            set winList to every window
-            repeat with win in winList
-                try
-                    if name of win contains patchName then
-                        set size of win to {winW, winH}
-                        set position of win to {0, 25}
-                        delay 0.3
-                    end if
-                end try
-            end repeat
+    -- Resize the window to the computed dimensions (unless skipped)
+    if not skipResize then
+        tell application "System Events"
+            tell process "Max"
+                set winList to every window
+                repeat with win in winList
+                    try
+                        if name of win contains patchName then
+                            set size of win to {winW, winH}
+                            set position of win to {0, 25}
+                            delay 0.3
+                        end if
+                    end try
+                end repeat
+            end tell
         end tell
-    end tell
+    end if
 
     -- Reset to 100% zoom (cmd+0), then apply zoom steps.
     -- Positive steps zoom in (cmd+=), negative zoom out (cmd+-).
