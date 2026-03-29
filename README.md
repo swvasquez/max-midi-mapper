@@ -12,7 +12,7 @@ The below visualization of the patch shows custom MIDI logic for electronic inst
 
 ## How it works
 
-Notes and CCs flow through the patch in parallel. Notes: `notein` → JS transform → `noteout`. CCs: `ctlin` → JS transform → `ctlout`. The active transform is a JS module that receives `(pitch, velocity, options, cc)` and returns `[pitch, velocity]`. CCs are stored in the `cc` object (keyed by controller number) and passed as context to every note event. Transforms are hot-swappable from the patch UI without interrupting the signal chain.
+Notes and CCs flow through the patch in parallel. Notes: `notein` → JS transform → `noteout`. CCs: `ctlin` → JS transform → `ctlout`. The active transform is a JS module that receives `(pitch, velocity, options, cc, noteHistory, ccHistory)` and returns `[pitch, velocity]`. CCs are stored in the `cc` object (keyed by controller number) and passed as context to every note event. Recent note and CC events are buffered in `noteHistory` and `ccHistory` and passed to every transform call. Transforms are hot-swappable from the patch UI without interrupting the signal chain.
 
 ## Configuration
 
@@ -23,6 +23,8 @@ Notes and CCs flow through the patch in parallel. Notes: `notein` → JS transfo
 | **out ch** | MIDI output channel |
 | **transform** | Active transform (selected from `transforms/`) |
 | **params** | Key-value pairs passed as options to the active transform (e.g. `root Bb scale minor p 0.5`) |
+| **note buf size** | Number of recent note events to retain in `noteHistory` (default: 8) |
+| **cc buf size** | Number of recent CC events to retain in `ccHistory` (default: 8) |
 
 ## Transforms
 
@@ -30,13 +32,15 @@ Transform files live in `transforms/`. Each exports a note handler, and optional
 
 ```js
 // Required: handle note events
-// cc is a live snapshot of all received CC values: { controller: value, ... }
-module.exports = function run(pitch, velocity, options, cc) {
+// cc: live snapshot of all received CC values { controller: value, ... }
+// noteHistory: recent note events [{ pitch, velocity, outPitch, outVelocity }, ...]
+// ccHistory: recent CC events [{ controller, value, outController, outValue }, ...]
+module.exports = function run(pitch, velocity, options, cc, noteHistory, ccHistory) {
     return [pitch, velocity];
 };
 
 // Optional: handle CC events. Defaults to pass-through if not defined.
-module.exports.runCC = function(controller, value, options, cc) {
+module.exports.runCC = function(controller, value, options, cc, noteHistory, ccHistory) {
     return [controller, value];
 };
 ```
