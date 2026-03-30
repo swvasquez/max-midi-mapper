@@ -19,7 +19,8 @@ module.exports = [
             "no-var": "off",          // var is required in ES5
             "prefer-const": "off",
             "prefer-arrow-callback": "off",
-            "no-undef": "error",      // catch missing Max globals
+            "no-undef": "error",
+            "quote-props": ["error", "always"],      // catch missing Max globals
         }
     },
     {

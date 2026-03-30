@@ -10,28 +10,28 @@
     },
     "classnamespace": "box",
     "rect": [
-      34.0,
-      96.0,
-      1135.0,
-      852.0
+      34,
+      96,
+      1135,
+      852
     ],
     "boxes": [
       {
         "box": {
           "fontname": "Courier New",
-          "fontsize": 11.0,
+          "fontsize": 11,
           "id": "obj-100",
-          "linecount": 57,
+          "linecount": 75,
           "maxclass": "comment",
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            764.0,
-            5.0,
-            217.0,
-            717.0
+            764,
+            5,
+            217,
+            1000
           ],
-          "text": "\u2014 SCALES \u2014\nchromatic\n\nmajor-ionian\ndorian\nphrygian\nlydian\nmixolydian\nnatural-minor-aeolian\nlocrian\n\nharmonic-minor\nharmonic-major\n\nmelodic-minor\ndorian-flat-2\nlydian-augmented\nlydian-dominant\nmixolydian-flat-6\nlocrian-sharp-2\naltered-super-locrian\n\nphrygian-dominant\ndouble-harmonic-major\nhungarian-minor\nhungarian-major\nneapolitan-minor\nneapolitan-major\npersian\nukrainian-dorian\nenigmatic\n\nmajor-pentatonic\nminor-pentatonic\nblues\nhirajoshi\nin-japanese\nyo\n\nwhole-tone\naugmented\nprometheus\ndiminished-whole-half\ndiminished-half-whole\n\nbebop-major\nbebop-dominant\nbebop-dorian\n\n\u2014 aliases \u2014\nmajor \u2192 major-ionian\nminor \u2192 natural-minor-aeolian\nionian \u2192 major-ionian\naeolian \u2192 natural-minor-aeolian\nharmonic \u2192 harmonic-minor\nmelodic \u2192 melodic-minor\npentatonic \u2192 major-pentatonic"
+          "text": "— SCALES —\nchromatic\n\nmajor-ionian\ndorian\nphrygian\nlydian\nmixolydian\nnatural-minor-aeolian\nlocrian\n\nharmonic-minor\nharmonic-major\n\nmelodic-minor\ndorian-flat-2\nlydian-augmented\nlydian-dominant\nmixolydian-flat-6\nlocrian-sharp-2\naltered-super-locrian\n\nphrygian-dominant\ndouble-harmonic-major\nhungarian-minor\nhungarian-major\nneapolitan-minor\nneapolitan-major\npersian\nukrainian-dorian\nenigmatic\n\nmajor-pentatonic\nminor-pentatonic\nblues\nhirajoshi\nin-japanese\nyo\n\nwhole-tone\naugmented\nprometheus\ndiminished-whole-half\ndiminished-half-whole\n\nbebop-major\nbebop-dominant\nbebop-dorian\nbebop-melodic-minor\nbebop-harmonic-minor\n\nmajor-blues\negyptian\nkumoi\npelog\nbalinese\nspanish\n\n— aliases —\nmajor → major-ionian\nminor → natural-minor-aeolian\nionian → major-ionian\naeolian → natural-minor-aeolian\nharmonic → harmonic-minor\nmelodic → melodic-minor\npentatonic → major-pentatonic\nminor-blues → blues\naltered → altered-super-locrian\nsuper-locrian → altered-super-locrian\nlydian-b7 → lydian-dominant\ndiminished → diminished-whole-half\nhalf-whole → diminished-half-whole\nwhole-half → diminished-whole-half\nphrygian-major → phrygian-dominant\nbyzantine → double-harmonic-major"
         }
       },
       {
@@ -42,10 +42,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            473.0,
-            857.0,
-            103.0,
-            60.0
+            473,
+            857,
+            103,
+            60
           ],
           "text": "In Run Mode, click to select output MIDI device "
         }
@@ -58,10 +58,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            493.0,
-            358.0,
-            105.0,
-            47.0
+            493,
+            358,
+            105,
+            47
           ],
           "text": "In Run Mode, Click to select input MIDI device "
         }
@@ -74,29 +74,29 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            20.0,
-            340.0,
-            117.0,
-            20.0
+            20,
+            340,
+            117,
+            20
           ],
-          "text": "\u2014 WORKFLOW \u2014"
+          "text": "— WORKFLOW —"
         }
       },
       {
         "box": {
           "fontface": 1,
-          "fontsize": 14.0,
+          "fontsize": 14,
           "id": "obj-1",
           "maxclass": "comment",
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            20.0,
-            5.0,
-            498.0,
-            22.0
+            20,
+            5,
+            498,
+            22
           ],
-          "text": "MIDI Note & CC Transform \u2014 notein & ctlin \u2192 v8 JS \u2192 noteout & ctlout"
+          "text": "MIDI Note & CC Transform — notein & ctlin → v8 JS → noteout & ctlout"
         }
       },
       {
@@ -106,10 +106,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            20.0,
-            36.0,
-            462.0,
-            20.0
+            20,
+            36,
+            462,
+            20
           ],
           "text": "Transforms incoming MIDI notes using swappable JS scripts in the transforms/ folder."
         }
@@ -122,12 +122,12 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            20.0,
-            67.0,
-            90.0,
-            20.0
+            20,
+            67,
+            90,
+            20
           ],
-          "text": "\u2014 CONFIG \u2014"
+          "text": "— CONFIG —"
         }
       },
       {
@@ -137,10 +137,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            94.0,
-            101.0,
-            40.0,
-            20.0
+            94,
+            101,
+            40,
+            20
           ],
           "text": "in ch"
         }
@@ -159,10 +159,10 @@
           ],
           "parameter_enable": 0,
           "patching_rect": [
-            94.0,
-            121.0,
-            50.0,
-            22.0
+            94,
+            121,
+            50,
+            22
           ]
         }
       },
@@ -173,10 +173,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            94.0,
-            163.0,
-            55.0,
-            22.0
+            94,
+            163,
+            55,
+            22
           ],
           "text": "s in_ch"
         }
@@ -188,10 +188,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            267.0,
-            101.0,
-            60.0,
-            20.0
+            267,
+            101,
+            60,
+            20
           ],
           "text": "transform"
         }
@@ -218,10 +218,10 @@
           ],
           "parameter_enable": 0,
           "patching_rect": [
-            267.0,
-            121.0,
-            120.0,
-            22.0
+            267,
+            121,
+            120,
+            22
           ]
         }
       },
@@ -232,10 +232,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            267.0,
-            163.0,
-            40.0,
-            22.0
+            267,
+            163,
+            40,
+            22
           ],
           "text": "s xfm"
         }
@@ -247,10 +247,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            177.0,
-            101.0,
-            45.0,
-            20.0
+            177,
+            101,
+            45,
+            20
           ],
           "text": "out ch"
         }
@@ -269,10 +269,10 @@
           ],
           "parameter_enable": 0,
           "patching_rect": [
-            177.0,
-            121.0,
-            50.0,
-            22.0
+            177,
+            121,
+            50,
+            22
           ]
         }
       },
@@ -283,10 +283,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            177.0,
-            163.0,
-            60.0,
-            22.0
+            177,
+            163,
+            60,
+            22
           ],
           "text": "s out_ch"
         }
@@ -298,10 +298,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            414.0,
-            101.0,
-            49.0,
-            20.0
+            414,
+            101,
+            49,
+            20
           ],
           "text": "params"
         }
@@ -320,10 +320,10 @@
           ],
           "parameter_enable": 0,
           "patching_rect": [
-            414.0,
-            121.0,
-            254.0,
-            22.0
+            414,
+            121,
+            254,
+            22
           ],
           "text": "values 0|64|127 cn 17"
         }
@@ -338,10 +338,10 @@
             ""
           ],
           "patching_rect": [
-            300.0,
-            458.0,
-            111.0,
-            22.0
+            300,
+            458,
+            111,
+            22
           ],
           "text": "prepend setoptions"
         }
@@ -353,10 +353,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            414.0,
-            163.0,
-            70.0,
-            22.0
+            414,
+            163,
+            70,
+            22
           ],
           "text": "s setopts"
         }
@@ -368,10 +368,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            20.0,
-            101.0,
-            42.0,
-            20.0
+            20,
+            101,
+            42,
+            20
           ],
           "text": "debug"
         }
@@ -387,10 +387,10 @@
           ],
           "parameter_enable": 0,
           "patching_rect": [
-            20.0,
-            121.0,
-            22.0,
-            22.0
+            20,
+            121,
+            22,
+            22
           ]
         }
       },
@@ -401,10 +401,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            20.0,
-            163.0,
-            45.0,
-            22.0
+            20,
+            163,
+            45,
+            22
           ],
           "text": "s dbg"
         }
@@ -419,10 +419,10 @@
             ""
           ],
           "patching_rect": [
-            548.0,
-            458.0,
-            45.0,
-            22.0
+            548,
+            458,
+            45,
+            22
           ],
           "text": "r dbg"
         }
@@ -437,10 +437,10 @@
             ""
           ],
           "patching_rect": [
-            548.0,
-            499.0,
-            125.0,
-            22.0
+            548,
+            499,
+            125,
+            22
           ],
           "text": "prepend option debug"
         }
@@ -455,10 +455,10 @@
             ""
           ],
           "patching_rect": [
-            300.0,
-            430.0,
-            56.0,
-            22.0
+            300,
+            430,
+            56,
+            22
           ],
           "text": "r setopts"
         }
@@ -473,10 +473,10 @@
             ""
           ],
           "patching_rect": [
-            25.0,
-            430.0,
-            45.0,
-            22.0
+            25,
+            430,
+            45,
+            22
           ],
           "text": "r in_ch"
         }
@@ -491,10 +491,10 @@
             ""
           ],
           "patching_rect": [
-            168.0,
-            430.0,
-            35.0,
-            22.0
+            168,
+            430,
+            35,
+            22
           ],
           "text": "r xfm"
         }
@@ -511,10 +511,10 @@
             "int"
           ],
           "patching_rect": [
-            430.0,
-            383.0,
-            50.0,
-            22.0
+            430,
+            383,
+            50,
+            22
           ],
           "text": "notein"
         }
@@ -529,10 +529,10 @@
             ""
           ],
           "patching_rect": [
-            168.0,
-            458.0,
-            107.0,
-            22.0
+            168,
+            458,
+            107,
+            22
           ],
           "text": "prepend transform"
         }
@@ -547,10 +547,10 @@
             ""
           ],
           "patching_rect": [
-            422.0,
-            458.0,
-            65.0,
-            22.0
+            422,
+            458,
+            65,
+            22
           ],
           "text": "pack 0 0 0"
         }
@@ -565,10 +565,10 @@
             ""
           ],
           "patching_rect": [
-            25.0,
-            458.0,
-            121.0,
-            22.0
+            25,
+            458,
+            121,
+            22
           ],
           "text": "prepend option in_ch"
         }
@@ -585,10 +585,10 @@
             ""
           ],
           "patching_rect": [
-            422.0,
-            690.0,
-            113.0,
-            22.0
+            422,
+            690,
+            113,
+            22
           ],
           "saved_object_attributes": {
             "parameter_enable": 0
@@ -613,10 +613,10 @@
             "int"
           ],
           "patching_rect": [
-            422.0,
-            739.0,
-            67.0,
-            22.0
+            422,
+            739,
+            67,
+            22
           ],
           "text": "unpack 0 0"
         }
@@ -631,10 +631,10 @@
             ""
           ],
           "patching_rect": [
-            507.0,
-            739.0,
-            60.0,
-            22.0
+            507,
+            739,
+            60,
+            22
           ],
           "text": "r out_ch"
         }
@@ -646,10 +646,10 @@
           "numinlets": 3,
           "numoutlets": 0,
           "patching_rect": [
-            422.0,
-            828.0,
-            50.0,
-            22.0
+            422,
+            828,
+            50,
+            22
           ],
           "text": "noteout"
         }
@@ -666,10 +666,10 @@
             "int"
           ],
           "patching_rect": [
-            607.0,
-            383.0,
-            45.0,
-            22.0
+            607,
+            383,
+            45,
+            22
           ],
           "text": "ctlin"
         }
@@ -684,10 +684,10 @@
             ""
           ],
           "patching_rect": [
-            601.0,
-            458.0,
-            65.0,
-            22.0
+            601,
+            458,
+            65,
+            22
           ],
           "text": "pack 0 0 0"
         }
@@ -702,10 +702,10 @@
             ""
           ],
           "patching_rect": [
-            601.0,
-            499.0,
-            75.0,
-            22.0
+            601,
+            499,
+            75,
+            22
           ],
           "text": "prepend cc"
         }
@@ -721,10 +721,10 @@
             "int"
           ],
           "patching_rect": [
-            578.0,
-            739.0,
-            67.0,
-            22.0
+            578,
+            739,
+            67,
+            22
           ],
           "text": "unpack 0 0"
         }
@@ -736,10 +736,10 @@
           "numinlets": 3,
           "numoutlets": 0,
           "patching_rect": [
-            578.0,
-            828.0,
-            45.0,
-            22.0
+            578,
+            828,
+            45,
+            22
           ],
           "text": "ctlout"
         }
@@ -751,10 +751,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            20.0,
-            210.0,
-            90.0,
-            20.0
+            20,
+            210,
+            90,
+            20
           ],
           "text": "note buffer size"
         }
@@ -766,10 +766,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            149.0,
-            210.0,
-            88.0,
-            20.0
+            149,
+            210,
+            88,
+            20
           ],
           "text": "cc buffer size"
         }
@@ -788,10 +788,10 @@
           ],
           "parameter_enable": 0,
           "patching_rect": [
-            20.0,
-            230.0,
-            50.0,
-            22.0
+            20,
+            230,
+            50,
+            22
           ]
         }
       },
@@ -809,10 +809,10 @@
           ],
           "parameter_enable": 0,
           "patching_rect": [
-            149.0,
-            230.0,
-            50.0,
-            22.0
+            149,
+            230,
+            50,
+            22
           ]
         }
       },
@@ -823,10 +823,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            20.0,
-            272.0,
-            37.0,
-            22.0
+            20,
+            272,
+            37,
+            22
           ],
           "text": "s nbs"
         }
@@ -838,10 +838,10 @@
           "numinlets": 1,
           "numoutlets": 0,
           "patching_rect": [
-            149.0,
-            272.0,
-            43.0,
-            22.0
+            149,
+            272,
+            43,
+            22
           ],
           "text": "s ccbs"
         }
@@ -856,10 +856,10 @@
             ""
           ],
           "patching_rect": [
-            25.0,
-            517.0,
-            35.0,
-            22.0
+            25,
+            517,
+            35,
+            22
           ],
           "text": "r nbs"
         }
@@ -874,10 +874,10 @@
             ""
           ],
           "patching_rect": [
-            25.0,
-            609.0,
-            41.0,
-            22.0
+            25,
+            609,
+            41,
+            22
           ],
           "text": "r ccbs"
         }
@@ -892,10 +892,10 @@
             ""
           ],
           "patching_rect": [
-            25.0,
-            545.0,
-            180.0,
-            22.0
+            25,
+            545,
+            180,
+            22
           ],
           "text": "prepend option note_buffer_size"
         }
@@ -910,10 +910,10 @@
             ""
           ],
           "patching_rect": [
-            25.0,
-            637.0,
-            169.0,
-            22.0
+            25,
+            637,
+            169,
+            22
           ],
           "text": "prepend option cc_buffer_size"
         }

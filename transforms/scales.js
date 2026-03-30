@@ -46,7 +46,15 @@ module.exports.SCALES = {
   "bebop-major": [2, 2, 1, 2, 1, 1, 2, 1],
   "bebop-dominant": [2, 2, 1, 2, 2, 1, 1, 1],
   "bebop-dorian": [2, 1, 1, 1, 2, 2, 1, 2],
+  "bebop-melodic-minor": [2, 1, 2, 2, 1, 1, 2, 1],
+  "bebop-harmonic-minor": [2, 1, 2, 2, 1, 2, 1, 1],
 
+  "major-blues": [2, 1, 1, 3, 2, 3],
+  "egyptian": [2, 3, 2, 3, 2],
+  "kumoi": [2, 1, 4, 2, 3],
+  "pelog": [1, 2, 4, 1, 4],
+  "balinese": [1, 2, 4, 1, 4],
+  "spanish": [1, 2, 2, 2, 1, 2, 2],
 };
 
 module.exports.ALIASES = {
@@ -56,5 +64,14 @@ module.exports.ALIASES = {
   "aeolian": "natural-minor-aeolian",
   "harmonic": "harmonic-minor",
   "melodic": "melodic-minor",
-  "pentatonic": "major-pentatonic"
+  "pentatonic": "major-pentatonic",
+  "minor-blues": "blues",
+  "altered": "altered-super-locrian",
+  "super-locrian": "altered-super-locrian",
+  "lydian-b7": "lydian-dominant",
+  "diminished": "diminished-whole-half",
+  "half-whole": "diminished-half-whole",
+  "whole-half": "diminished-whole-half",
+  "phrygian-major": "phrygian-dominant",
+  "byzantine": "double-harmonic-major",
 };
